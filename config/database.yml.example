@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['TRAINING_DB_ACCOUNT'] %>
+  password: <%= ENV['TRAINING_DB_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: go-where-api_development
+
+test:
+  <<: *default
+  database: go-where-api_test
+
+staging:
+  <<: *default
+  database: go-where-api_staging
+
+production:
+  <<: *default
+database: go-where-api_production
