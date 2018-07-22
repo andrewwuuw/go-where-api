@@ -21,7 +21,7 @@ require 'database_cleaner'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
 Shoulda::Matchers.configure do |config|
@@ -38,7 +38,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  config.include RequestSpecHelper, type: :request
+  
    # add `FactoryBot` methods
    config.include FactoryBot::Syntax::Methods
 
