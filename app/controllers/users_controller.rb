@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def sign_in
     user = User.find_by_email(params['email'].downcase)
-    return status_422({message: 'Email or Password is uncorrect.'}) if user.nil?
-    return status_422({message: 'Email or Password is uncorrect.'}) unless user.valid_password?(params['password'])
+    return status_422(nil, [message: 'Email or Password is uncorrect.']) if user.nil?
+    return status_422(nil, [message: 'Email or Password is uncorrect.']) unless user.valid_password?(params['password'])
     # user.authentication_token = Devise.friendly_token()
     # user.authentication_token_time = Time.now() 
     # user.refresh_token = Devise.friendly_token()

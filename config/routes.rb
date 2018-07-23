@@ -4,4 +4,11 @@ Rails.application.routes.draw do
   post "/sign_in", to: "users#sign_in"
   delete "/sign_out", to: "users#sign_out"
 
+  resources :friends, only: [:index, :create, :destroy] do
+    collection do
+        post "/apply/:id", to: "friends#apply"
+        get "/applicant", to: "friends#applicant"
+    end
+  end
+
 end
