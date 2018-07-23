@@ -5,10 +5,11 @@ class ApplicationController < ActionController::API
   
   def current_user
     auth = request.headers['Authorization']
-    @current_user ||= User.find(auth) if auth
+    return nil unless auth
+    @current_user ||= User.find(auth)
   end
 
   def authorize
-    redirect_to '/login' unless current_user
+    return status_404(nil, ["Header can't find the key: Authorization"]) unless current_user
   end
 end
