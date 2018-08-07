@@ -50,12 +50,6 @@ RSpec.describe 'User API', type: :request do
         expect(json['user_id']).to eq json['user_id']
         expect(response).to have_http_status(200)
       end
-
-      it "Sign Out" do
-          delete '/sign_out'
-        expect(response).to have_http_status(200)
-        expect(response.body).to match(/Already sign out/)
-      end
     end
 
     context 'when sign_up the request is invalid' do
