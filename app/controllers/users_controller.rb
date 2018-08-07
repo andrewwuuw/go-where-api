@@ -9,13 +9,7 @@ class UsersController < ApplicationController
     # user.refresh_token_time = Time.now()
     # user.save()
     # response.headers['Authorization'] = "Basic #{user.authentication_token}"
-    session[:user_id] = user.id
     json_response({message: 'Login success.', user_id: user.id})
-  end
-
-  def sign_out
-    session[:user_id] = nil
-    json_response({message: 'Already sign out.'})
   end
 
   def create
@@ -29,6 +23,6 @@ class UsersController < ApplicationController
 
   private
   def sign_up_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :is_public)
   end
 end
